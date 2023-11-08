@@ -14,8 +14,8 @@ final class FirstAssignmentViewController: UIViewController {
     private var aaButton: UIButton?
     private let imageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "rim")
-        view.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        view.image = UIImage(named: "hangyodon")
+        view.frame = CGRect(x: 50, y: 900, width: 300, height: 200)
         return view
     }()
     
@@ -41,7 +41,7 @@ final class FirstAssignmentViewController: UIViewController {
     private func setLayout() {
         self.view.backgroundColor = .systemGray2
         shakeButton = createButton(title: "흔들흔들🫨", positionY: 250)
-        toastButton = createButton(title: "토스트토스트🥪", positionY: 350)
+        toastButton = createButton(title: "교동이토스트🥪", positionY: 350)
         aaButton = createButton(title: "아무거나🤩", positionY: 450)
         self.view.addSubview(shakeButton!)
         self.view.addSubview(toastButton!)
@@ -68,12 +68,13 @@ final class FirstAssignmentViewController: UIViewController {
     
     // 2. 토스트 메세지
     @objc private func toastTap() {
-        UIView.animate(withDuration: 2.0, animations: { [self] in
-            imageView.transform = CGAffineTransform(translationX: 200, y: 200)
-            imageView.alpha = 1
+        UIView.animate(withDuration: 2.0, delay: 0.0, animations: { [self] in
+            imageView.frame.origin.y -= 300
+        }, completion: { [self]_ in
+            UIView.animate(withDuration: 1.5, animations: { [self] in
+                imageView.alpha = 0.0
+            })
         })
+        
     }
 }
-
-
-
