@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A1695C3A2AFB6C2C005DBF3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1695C392AFB6C2C005DBF3F /* AppDelegate.swift */; };
 		A1695C3C2AFB6C2C005DBF3F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1695C3B2AFB6C2C005DBF3F /* SceneDelegate.swift */; };
-		A1695C3E2AFB6C2C005DBF3F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1695C3D2AFB6C2C005DBF3F /* ViewController.swift */; };
+		A1695C3E2AFB6C2C005DBF3F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1695C3D2AFB6C2C005DBF3F /* FirstViewController.swift */; };
 		A1695C432AFB6C2D005DBF3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1695C422AFB6C2D005DBF3F /* Assets.xcassets */; };
 		A1695C462AFB6C2D005DBF3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1695C442AFB6C2D005DBF3F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -18,7 +18,7 @@
 		A1695C362AFB6C2C005DBF3F /* sopt33-animation-study.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sopt33-animation-study.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1695C392AFB6C2C005DBF3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1695C3B2AFB6C2C005DBF3F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A1695C3D2AFB6C2C005DBF3F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A1695C3D2AFB6C2C005DBF3F /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		A1695C422AFB6C2D005DBF3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1695C452AFB6C2D005DBF3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A1695C472AFB6C2D005DBF3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,14 +54,30 @@
 		A1695C382AFB6C2C005DBF3F /* sopt33-animation-study */ = {
 			isa = PBXGroup;
 			children = (
-				A1695C392AFB6C2C005DBF3F /* AppDelegate.swift */,
-				A1695C3B2AFB6C2C005DBF3F /* SceneDelegate.swift */,
-				A1695C3D2AFB6C2C005DBF3F /* ViewController.swift */,
+				A1695C4F2AFB6DD2005DBF3F /* App */,
+				A1695C4E2AFB6DA2005DBF3F /* Week1 */,
 				A1695C422AFB6C2D005DBF3F /* Assets.xcassets */,
 				A1695C442AFB6C2D005DBF3F /* LaunchScreen.storyboard */,
 				A1695C472AFB6C2D005DBF3F /* Info.plist */,
 			);
 			path = "sopt33-animation-study";
+			sourceTree = "<group>";
+		};
+		A1695C4E2AFB6DA2005DBF3F /* Week1 */ = {
+			isa = PBXGroup;
+			children = (
+				A1695C3D2AFB6C2C005DBF3F /* FirstViewController.swift */,
+			);
+			path = Week1;
+			sourceTree = "<group>";
+		};
+		A1695C4F2AFB6DD2005DBF3F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A1695C3B2AFB6C2C005DBF3F /* SceneDelegate.swift */,
+				A1695C392AFB6C2C005DBF3F /* AppDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,7 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1695C3E2AFB6C2C005DBF3F /* ViewController.swift in Sources */,
+				A1695C3E2AFB6C2C005DBF3F /* FirstViewController.swift in Sources */,
 				A1695C3A2AFB6C2C005DBF3F /* AppDelegate.swift in Sources */,
 				A1695C3C2AFB6C2C005DBF3F /* SceneDelegate.swift in Sources */,
 			);
