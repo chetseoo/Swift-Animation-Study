@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  FirstPracticeViewController.swift
 //  sopt33-animation-study
 //
 //  Created by 최서연 on 11/8/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class FirstViewController: UIViewController {
+final class FirstPracticeViewController: UIViewController {
     
     private let testView: UIView = {
         let view = UIView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
@@ -49,8 +49,8 @@ final class FirstViewController: UIViewController {
     private func setAnimation() {
         // 기본 Animation
         // 이렇게 선언하면 모든 애니메이션이 적용 안됨!
-        UIView.animate(withDuration: 2.0, animations: { [self] in
-            testView.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+        UIView.animate(withDuration: 2.0, animations: {
+            self.testView.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
         })
         UIView.animate(withDuration: 2.0, animations: { [self] in
             testView.transform = CGAffineTransform(rotationAngle: .pi)
