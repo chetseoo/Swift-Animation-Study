@@ -12,6 +12,7 @@
 		A1695C3C2AFB6C2C005DBF3F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1695C3B2AFB6C2C005DBF3F /* SceneDelegate.swift */; };
 		A1695C3E2AFB6C2C005DBF3F /* FirstPracticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1695C3D2AFB6C2C005DBF3F /* FirstPracticeController.swift */; };
 		A1695C462AFB6C2D005DBF3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1695C442AFB6C2D005DBF3F /* LaunchScreen.storyboard */; };
+		A19D111B2B048933001C9B52 /* SecondPracticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D111A2B048933001C9B52 /* SecondPracticeController.swift */; };
 		A1CC28FB2AFBF46500257DCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1CC28FA2AFBF46500257DCD /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 		A1695C3D2AFB6C2C005DBF3F /* FirstPracticeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPracticeController.swift; sourceTree = "<group>"; };
 		A1695C452AFB6C2D005DBF3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A1695C472AFB6C2D005DBF3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A19D111A2B048933001C9B52 /* SecondPracticeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPracticeController.swift; sourceTree = "<group>"; };
 		A1CC28FA2AFBF46500257DCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +58,7 @@
 		A1695C382AFB6C2C005DBF3F /* sopt33-animation-study */ = {
 			isa = PBXGroup;
 			children = (
+				A19D11192B048925001C9B52 /* Week2 */,
 				A1695C4F2AFB6DD2005DBF3F /* App */,
 				A1695C4E2AFB6DA2005DBF3F /* Week1 */,
 				A1695C442AFB6C2D005DBF3F /* LaunchScreen.storyboard */,
@@ -81,6 +84,14 @@
 				A1695C392AFB6C2C005DBF3F /* AppDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		A19D11192B048925001C9B52 /* Week2 */ = {
+			isa = PBXGroup;
+			children = (
+				A19D111A2B048933001C9B52 /* SecondPracticeController.swift */,
+			);
+			path = Week2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +167,7 @@
 				A1695C3E2AFB6C2C005DBF3F /* FirstPracticeController.swift in Sources */,
 				A1695C3A2AFB6C2C005DBF3F /* AppDelegate.swift in Sources */,
 				A13C43832AFBA92400BF6430 /* FirstAssignmentViewController.swift in Sources */,
+				A19D111B2B048933001C9B52 /* SecondPracticeController.swift in Sources */,
 				A1695C3C2AFB6C2C005DBF3F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
