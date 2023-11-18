@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		A13C43832AFBA92400BF6430 /* FirstAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C43822AFBA92400BF6430 /* FirstAssignmentViewController.swift */; };
+		A14C84072B07BB2F0046495B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A14C84062B07BB2F0046495B /* SnapKit */; };
+		A14C84092B07BB2F0046495B /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = A14C84082B07BB2F0046495B /* SnapKit-Dynamic */; };
 		A1695C3A2AFB6C2C005DBF3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1695C392AFB6C2C005DBF3F /* AppDelegate.swift */; };
 		A1695C3C2AFB6C2C005DBF3F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1695C3B2AFB6C2C005DBF3F /* SceneDelegate.swift */; };
 		A1695C3E2AFB6C2C005DBF3F /* FirstPracticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1695C3D2AFB6C2C005DBF3F /* FirstPracticeController.swift */; };
 		A1695C462AFB6C2D005DBF3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1695C442AFB6C2D005DBF3F /* LaunchScreen.storyboard */; };
 		A19D111B2B048933001C9B52 /* SecondPracticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D111A2B048933001C9B52 /* SecondPracticeController.swift */; };
 		A1CC28FB2AFBF46500257DCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1CC28FA2AFBF46500257DCD /* Assets.xcassets */; };
+		A1E5B19F2B04AB0600B4F08C /* SecondFightingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E5B19E2B04AB0600B4F08C /* SecondFightingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,7 @@
 		A1695C472AFB6C2D005DBF3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A19D111A2B048933001C9B52 /* SecondPracticeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPracticeController.swift; sourceTree = "<group>"; };
 		A1CC28FA2AFBF46500257DCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1E5B19E2B04AB0600B4F08C /* SecondFightingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFightingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A14C84072B07BB2F0046495B /* SnapKit in Frameworks */,
+				A14C84092B07BB2F0046495B /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				A19D111A2B048933001C9B52 /* SecondPracticeController.swift */,
+				A1E5B19E2B04AB0600B4F08C /* SecondFightingViewController.swift */,
 			);
 			path = Week2;
 			sourceTree = "<group>";
@@ -110,6 +117,10 @@
 			dependencies = (
 			);
 			name = "sopt33-animation-study";
+			packageProductDependencies = (
+				A14C84062B07BB2F0046495B /* SnapKit */,
+				A14C84082B07BB2F0046495B /* SnapKit-Dynamic */,
+			);
 			productName = "sopt33-animation-study";
 			productReference = A1695C362AFB6C2C005DBF3F /* sopt33-animation-study.app */;
 			productType = "com.apple.product-type.application";
@@ -138,6 +149,9 @@
 				Base,
 			);
 			mainGroup = A1695C2D2AFB6C2C005DBF3F;
+			packageReferences = (
+				A14C84052B07BB2F0046495B /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = A1695C372AFB6C2C005DBF3F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -166,6 +180,7 @@
 			files = (
 				A1695C3E2AFB6C2C005DBF3F /* FirstPracticeController.swift in Sources */,
 				A1695C3A2AFB6C2C005DBF3F /* AppDelegate.swift in Sources */,
+				A1E5B19F2B04AB0600B4F08C /* SecondFightingViewController.swift in Sources */,
 				A13C43832AFBA92400BF6430 /* FirstAssignmentViewController.swift in Sources */,
 				A19D111B2B048933001C9B52 /* SecondPracticeController.swift in Sources */,
 				A1695C3C2AFB6C2C005DBF3F /* SceneDelegate.swift in Sources */,
@@ -379,6 +394,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A14C84052B07BB2F0046495B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A14C84062B07BB2F0046495B /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A14C84052B07BB2F0046495B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		A14C84082B07BB2F0046495B /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A14C84052B07BB2F0046495B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A1695C2E2AFB6C2C005DBF3F /* Project object */;
 }
