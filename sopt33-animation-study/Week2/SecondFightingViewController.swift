@@ -12,8 +12,8 @@ final class SecondFightingViewController: UIViewController {
     
     //MARK: - setting Property
     
-    var score: Int = 0
     var timer: Timer? = nil
+    var runCount: Double = 0
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -159,6 +159,11 @@ final class SecondFightingViewController: UIViewController {
     @objc
     private func startButtonTapped(_ gesture: UITapGestureRecognizer) {
         if gesture.state == .ended {
+            self.titleLabel.text = "Please Save Gyodon!"
+            
+            // runCount값 초기화
+            runCount = 0
+            
             startGame()
         }
     }
@@ -174,6 +179,14 @@ final class SecondFightingViewController: UIViewController {
     
     @objc
     private func moveMaru() {
+        // 10초가 지나면 게임 성공
+        if runCount >= 10.0 {
+            self.titleLabel.text = "Success! Thank You~"
+            self.endGame()
+        }else {
+            runCount += 0.2
+        }
+        
         var leftTopMaruX = self.leftTopMaru.frame.origin.x
         var leftTopMaruY = self.leftTopMaru.frame.origin.y
         leftTopMaruX += 10
@@ -186,7 +199,7 @@ final class SecondFightingViewController: UIViewController {
         leftMiddleMaruX += 10
         leftMiddleMaruY -= 10
         self.leftMiddleMaru.frame = .init(origin: .init(x: leftMiddleMaruX, y: leftMiddleMaruY),
-                                       size: self.leftMiddleMaru.frame.size)
+                                          size: self.leftMiddleMaru.frame.size)
         
         var leftBottomMaruX = self.leftBottomMaru.frame.origin.x
         var leftBottomMaruY = self.leftBottomMaru.frame.origin.y
@@ -207,28 +220,30 @@ final class SecondFightingViewController: UIViewController {
         rightMiddleMaruX -= 5
         rightMiddleMaruY += 5
         self.rightMiddleMaru.frame = .init(origin: .init(x: rightMiddleMaruX, y: rightMiddleMaruY),
-                                        size: self.rightMiddleMaru.frame.size)
+                                           size: self.rightMiddleMaru.frame.size)
         
         var rightBottomMaruX = self.rightBottomMaru.frame.origin.x
         var rightBottomMaruY = self.rightBottomMaru.frame.origin.y
         rightBottomMaruX -= 6
         rightBottomMaruY -= 4
         self.rightBottomMaru.frame = .init(origin: .init(x: rightBottomMaruX, y: rightBottomMaruY),
-                                          size: self.rightBottomMaru.frame.size)
+                                           size: self.rightBottomMaru.frame.size)
         
         self.calculatePositionReached()
     }
     
     private func calculatePositionReached() {
+        
+        let numberforMatter = NumberFormatter()
+        numberforMatter.maximumFractionDigits = 2
+        
         if self.gyodon.frame.minX <= self.leftTopMaru.frame.minX &&
             self.gyodon.frame.maxX >= self.leftTopMaru.frame.maxX &&
             self.gyodon.frame.minY <= self.leftTopMaru.frame.minY &&
             self.gyodon.frame.maxY >= self.leftTopMaru.frame.maxY
         {
-            self.titleLabel.text = "ByeBye Score:\(self.score)"
+            self.titleLabel.text = "OMG.. Runtime: \(String(describing: numberforMatter.string(for: runCount)!))s"
             self.endGame()
-        } else {
-            self.score += 10
         }
         
         if self.gyodon.frame.minX <= self.leftMiddleMaru.frame.minX &&
@@ -236,10 +251,8 @@ final class SecondFightingViewController: UIViewController {
             self.gyodon.frame.minY <= self.leftMiddleMaru.frame.minY &&
             self.gyodon.frame.maxY >= self.leftMiddleMaru.frame.maxY
         {
-            self.titleLabel.text = "ByeBye Score:\(self.score)"
+            self.titleLabel.text = "OMG.. Runtime: \(String(describing: numberforMatter.string(for: runCount)!))s"
             self.endGame()
-        } else {
-            self.score += 10
         }
         
         if self.gyodon.frame.minX <= self.leftBottomMaru.frame.minX &&
@@ -247,10 +260,8 @@ final class SecondFightingViewController: UIViewController {
             self.gyodon.frame.minY <= self.leftBottomMaru.frame.minY &&
             self.gyodon.frame.maxY >= self.leftBottomMaru.frame.maxY
         {
-            self.titleLabel.text = "ByeBye Score:\(self.score)"
+            self.titleLabel.text = "OMG.. Runtime: \(String(describing: numberforMatter.string(for: runCount)!))s"
             self.endGame()
-        } else {
-            self.score += 10
         }
         
         if self.gyodon.frame.minX <= self.rightTopMaru.frame.minX &&
@@ -258,10 +269,8 @@ final class SecondFightingViewController: UIViewController {
             self.gyodon.frame.minY <= self.rightTopMaru.frame.minY &&
             self.gyodon.frame.maxY >= self.rightTopMaru.frame.maxY
         {
-            self.titleLabel.text = "ByeBye Score:\(self.score)"
+            self.titleLabel.text = "OMG.. Runtime: \(String(describing: numberforMatter.string(for: runCount)!))s"
             self.endGame()
-        } else {
-            self.score += 10
         }
         
         if self.gyodon.frame.minX <= self.rightMiddleMaru.frame.minX &&
@@ -269,10 +278,8 @@ final class SecondFightingViewController: UIViewController {
             self.gyodon.frame.minY <= self.rightMiddleMaru.frame.minY &&
             self.gyodon.frame.maxY >= self.rightMiddleMaru.frame.maxY
         {
-            self.titleLabel.text = "ByeBye Score:\(self.score)"
+            self.titleLabel.text = "OMG.. Runtime: \(String(describing: numberforMatter.string(for: runCount)!))s"
             self.endGame()
-        } else {
-            self.score += 10
         }
         
         if self.gyodon.frame.minX <= self.rightBottomMaru.frame.minX &&
@@ -280,10 +287,8 @@ final class SecondFightingViewController: UIViewController {
             self.gyodon.frame.minY <= self.rightBottomMaru.frame.minY &&
             self.gyodon.frame.maxY >= self.rightBottomMaru.frame.maxY
         {
-            self.titleLabel.text = "ByeBye Score:\(self.score)"
+            self.titleLabel.text = "OMG.. Runtime: \(String(describing: numberforMatter.string(for: runCount)!))s"
             self.endGame()
-        } else {
-            self.score += 10
         }
     }
 }
