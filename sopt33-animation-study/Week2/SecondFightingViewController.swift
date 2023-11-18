@@ -12,17 +12,20 @@ final class SecondFightingViewController: UIViewController {
     
     //MARK: - setting Property
     
+    var score: Int = 0
+    var timer: Timer? = nil
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Please Save Gyodon!"
         label.font = .systemFont(ofSize: 25, weight: .bold)
-        label.textColor = .black
+        label.textColor = .white
         return label
     }()
     
     private let startButton: UIButton = {
-       let button = UIButton()
-        button.setTitle("Start!", for: .normal)
+        let button = UIButton()
+        button.setTitle("Double Click Start!", for: .normal)
         button.backgroundColor = .systemRed
         button.layer.cornerRadius = 10
         return button
@@ -44,16 +47,18 @@ final class SecondFightingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.setUI()
+        self.setTarget()
     }
     
     // MARK: - setting UI
     
     private func setUI() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .black
+        
         self.setHierarchy()
         self.setLayout()
-        
     }
     
     // MARK: - setting layout
@@ -66,7 +71,7 @@ final class SecondFightingViewController: UIViewController {
         startButton.snp.makeConstraints{
             $0.top.equalToSuperview().inset(150)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(100)
+            $0.width.equalTo(200)
         }
         gyodon.snp.makeConstraints{
             $0.centerX.equalToSuperview()
@@ -120,6 +125,165 @@ final class SecondFightingViewController: UIViewController {
         self.view.addSubview(gyodon)
         [leftTopMaru, rightTopMaru, leftMiddleMaru, rightMiddleMaru, leftBottomMaru, rightBottomMaru].forEach {
             self.view.addSubview($0)
+        }
+    }
+    
+    //MARK: - setting Target
+    
+    private func setTarget() {
+        //double click to start
+        let doubleClickTapGesture = UITapGestureRecognizer(target: self, action: #selector(startButtonTapped))
+        doubleClickTapGesture.numberOfTapsRequired = 2
+        startButton.addGestureRecognizer(doubleClickTapGesture)
+        
+        // apply panGesture to gyodon
+        let gyodonPanGesture = UIPanGestureRecognizer(target: self, action: #selector(gyodonPanned))
+        gyodon.addGestureRecognizer(gyodonPanGesture)
+        gyodon.isUserInteractionEnabled = true
+    }
+    
+    private func startGame() {
+        guard timer == nil else { return }
+        self.timer = Timer.scheduledTimer(timeInterval: 0.2,
+                                          target: self,
+                                          selector: #selector(moveMaru),
+                                          userInfo: nil,
+                                          repeats: true)
+    }
+    
+    private func endGame() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    @objc
+    private func startButtonTapped(_ gesture: UITapGestureRecognizer) {
+        if gesture.state == .ended {
+            startGame()
+        }
+    }
+    
+    @objc
+    private func gyodonPanned(_ gesture: UIPanGestureRecognizer) {
+        let transition = gesture.translation(in: view)
+        if let viewToMove = gesture.view {
+            viewToMove.center = CGPoint(x: viewToMove.center.x+transition.x, y: viewToMove.center.y+transition.y)
+        }
+        gesture.setTranslation(.zero, in: view)
+    }
+    
+    @objc
+    private func moveMaru() {
+        var leftTopMaruX = self.leftTopMaru.frame.origin.x
+        var leftTopMaruY = self.leftTopMaru.frame.origin.y
+        leftTopMaruX += 10
+        leftTopMaruY += 10
+        self.leftTopMaru.frame = .init(origin: .init(x: leftTopMaruX, y: leftTopMaruY),
+                                       size: self.leftTopMaru.frame.size)
+        
+        var leftMiddleMaruX = self.leftMiddleMaru.frame.origin.x
+        var leftMiddleMaruY = self.leftMiddleMaru.frame.origin.y
+        leftMiddleMaruX += 10
+        leftMiddleMaruY -= 10
+        self.leftMiddleMaru.frame = .init(origin: .init(x: leftMiddleMaruX, y: leftMiddleMaruY),
+                                       size: self.leftMiddleMaru.frame.size)
+        
+        var leftBottomMaruX = self.leftBottomMaru.frame.origin.x
+        var leftBottomMaruY = self.leftBottomMaru.frame.origin.y
+        leftBottomMaruX += 5
+        leftBottomMaruY -= 10
+        self.leftBottomMaru.frame = .init(origin: .init(x: leftBottomMaruX, y: leftBottomMaruY),
+                                          size: self.leftBottomMaru.frame.size)
+        
+        var rightTopMaruX = self.rightTopMaru.frame.origin.x
+        var rightTopMaruY = self.rightTopMaru.frame.origin.y
+        rightTopMaruX -= 7
+        rightTopMaruY += 5
+        self.rightTopMaru.frame = .init(origin: .init(x: rightTopMaruX, y: rightTopMaruY),
+                                        size: self.rightTopMaru.frame.size)
+        
+        var rightMiddleMaruX = self.rightMiddleMaru.frame.origin.x
+        var rightMiddleMaruY = self.rightMiddleMaru.frame.origin.y
+        rightMiddleMaruX -= 5
+        rightMiddleMaruY += 5
+        self.rightMiddleMaru.frame = .init(origin: .init(x: rightMiddleMaruX, y: rightMiddleMaruY),
+                                        size: self.rightMiddleMaru.frame.size)
+        
+        var rightBottomMaruX = self.rightBottomMaru.frame.origin.x
+        var rightBottomMaruY = self.rightBottomMaru.frame.origin.y
+        rightBottomMaruX -= 6
+        rightBottomMaruY -= 4
+        self.rightBottomMaru.frame = .init(origin: .init(x: rightBottomMaruX, y: rightBottomMaruY),
+                                          size: self.rightBottomMaru.frame.size)
+        
+        self.calculatePositionReached()
+    }
+    
+    private func calculatePositionReached() {
+        if self.gyodon.frame.minX <= self.leftTopMaru.frame.minX &&
+            self.gyodon.frame.maxX >= self.leftTopMaru.frame.maxX &&
+            self.gyodon.frame.minY <= self.leftTopMaru.frame.minY &&
+            self.gyodon.frame.maxY >= self.leftTopMaru.frame.maxY
+        {
+            self.titleLabel.text = "ByeBye Score:\(self.score)"
+            self.endGame()
+        } else {
+            self.score += 10
+        }
+        
+        if self.gyodon.frame.minX <= self.leftMiddleMaru.frame.minX &&
+            self.gyodon.frame.maxX >= self.leftMiddleMaru.frame.maxX &&
+            self.gyodon.frame.minY <= self.leftMiddleMaru.frame.minY &&
+            self.gyodon.frame.maxY >= self.leftMiddleMaru.frame.maxY
+        {
+            self.titleLabel.text = "ByeBye Score:\(self.score)"
+            self.endGame()
+        } else {
+            self.score += 10
+        }
+        
+        if self.gyodon.frame.minX <= self.leftBottomMaru.frame.minX &&
+            self.gyodon.frame.maxX >= self.leftBottomMaru.frame.maxX &&
+            self.gyodon.frame.minY <= self.leftBottomMaru.frame.minY &&
+            self.gyodon.frame.maxY >= self.leftBottomMaru.frame.maxY
+        {
+            self.titleLabel.text = "ByeBye Score:\(self.score)"
+            self.endGame()
+        } else {
+            self.score += 10
+        }
+        
+        if self.gyodon.frame.minX <= self.rightTopMaru.frame.minX &&
+            self.gyodon.frame.maxX >= self.rightTopMaru.frame.maxX &&
+            self.gyodon.frame.minY <= self.rightTopMaru.frame.minY &&
+            self.gyodon.frame.maxY >= self.rightTopMaru.frame.maxY
+        {
+            self.titleLabel.text = "ByeBye Score:\(self.score)"
+            self.endGame()
+        } else {
+            self.score += 10
+        }
+        
+        if self.gyodon.frame.minX <= self.rightMiddleMaru.frame.minX &&
+            self.gyodon.frame.maxX >= self.rightMiddleMaru.frame.maxX &&
+            self.gyodon.frame.minY <= self.rightMiddleMaru.frame.minY &&
+            self.gyodon.frame.maxY >= self.rightMiddleMaru.frame.maxY
+        {
+            self.titleLabel.text = "ByeBye Score:\(self.score)"
+            self.endGame()
+        } else {
+            self.score += 10
+        }
+        
+        if self.gyodon.frame.minX <= self.rightBottomMaru.frame.minX &&
+            self.gyodon.frame.maxX >= self.rightBottomMaru.frame.maxX &&
+            self.gyodon.frame.minY <= self.rightBottomMaru.frame.minY &&
+            self.gyodon.frame.maxY >= self.rightBottomMaru.frame.maxY
+        {
+            self.titleLabel.text = "ByeBye Score:\(self.score)"
+            self.endGame()
+        } else {
+            self.score += 10
         }
     }
 }
