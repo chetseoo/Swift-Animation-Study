@@ -21,7 +21,7 @@ class SecondPracticeController: UIViewController {
     }
     
     private func setUI() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .red
         self.view.addSubview(testView)
     }
     
