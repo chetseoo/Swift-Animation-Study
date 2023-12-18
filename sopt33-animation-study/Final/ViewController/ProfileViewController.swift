@@ -16,8 +16,8 @@ final class ProfileViewController: UIViewController {
     
     private let headerView = HeaderView()
     
-    private let stackView = UIStackView()
     private let profileView = ProfileView()
+    private let horizontalStoryView = StorysView()
     
     //MARK: Life Cycle
     
@@ -41,9 +41,10 @@ final class ProfileViewController: UIViewController {
     //MARK: set Hierachy
     
     private func setHierachy() {
-        self.view.addSubviews(headerView, stackView)
+        self.view.addSubviews(headerView,
+                              profileView,
+                              horizontalStoryView)
         
-        stackView.addArrangedSubview(profileView)
     }
     
     //MARK: set Layout
@@ -54,16 +55,17 @@ final class ProfileViewController: UIViewController {
             $0.top.equalToSuperview().inset(44.adjusted)
             $0.height.equalTo(59.adjusted)
         }
-        
-        stackView.snp.makeConstraints {
+
+        profileView.snp.makeConstraints {
             $0.top.equalTo(headerView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(1000.adjusted)
+            $0.height.equalTo(180.adjusted)
         }
         
-        profileView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(160.adjusted)
+        horizontalStoryView.snp.makeConstraints {
+            $0.top.equalTo(profileView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(110.adjusted)
         }
     }
 }

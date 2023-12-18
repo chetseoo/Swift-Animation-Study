@@ -1,5 +1,5 @@
 //
-//  CircleImageView.swift
+//  ProfileChipView.swift
 //  sopt33-animation-study
 //
 //  Created by 최서연 on 12/18/23.
@@ -7,12 +7,11 @@
 
 import UIKit
 
-final class CircleImageView: UIView {
+final class ProfileChipView: UIView {
     
     // MARK: set Properties
     
-    let circleImageView = UIImageView()
-  
+    let titleLabel = UILabel()
     
     //MARK: Life Cycle
     
