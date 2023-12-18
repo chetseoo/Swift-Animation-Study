@@ -64,5 +64,10 @@ final class AccountsNumberView: UIView {
             $0.top.equalTo(numberLabel.snp.bottom)
             $0.centerX.equalToSuperview()
         }
+        
+        self.snp.makeConstraints {
+            $0.width.equalTo(descriptionLabel.snp.width)
+            $0.height.equalTo(numberLabel.snp.height).offset(descriptionLabel.font.lineHeight)
+        }
     }
 }
