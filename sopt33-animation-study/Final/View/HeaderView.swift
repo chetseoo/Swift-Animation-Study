@@ -10,12 +10,12 @@ import UIKit
 final class HeaderView: UIView {
     
     // MARK: set Properties
-    private let plusButton = UIButton()
-    private let menuButton = UIButton()
     
     private let userNameLabel = UILabel()
     private let accountListImage = UIImageView()
     
+    private let plusButton = UIButton()
+    private let menuButton = UIButton()
     
     //MARK: Life Cycle
     
