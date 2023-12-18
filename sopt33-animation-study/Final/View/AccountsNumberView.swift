@@ -13,6 +13,7 @@ import Then
 final class AccountsNumberView: UIView {
     
     // MARK: set Properties
+    
     var numberLabel = UILabel()
     var descriptionLabel = UILabel()
     

@@ -11,12 +11,13 @@ import SnapKit
 import Then
 
 final class ProfileViewController: UIViewController {
-
+    
     //MARK: set Properties
     
     private let headerView = HeaderView()
     private let scrollView = UIScrollView()
     
+    private let circleProfileView = ProfileCircleImageView()
     private let postNumberView = AccountsNumberView()
     private let followersNumberView = AccountsNumberView()
     private let followingNumberView = AccountsNumberView()
@@ -25,7 +26,7 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         setUI()
         setHierachy()
         setLayout()
@@ -36,10 +37,6 @@ final class ProfileViewController: UIViewController {
     private func setUI() {
         self.view.do {
             $0.backgroundColor =  UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
-        }
-        
-        scrollView.do {
-            $0.backgroundColor = .gray
         }
         
         postNumberView.do {
@@ -64,7 +61,8 @@ final class ProfileViewController: UIViewController {
     private func setHierachy() {
         self.view.addSubviews(headerView, scrollView)
         
-        scrollView.addSubviews(postNumberView,
+        scrollView.addSubviews(circleProfileView,
+                               postNumberView,
                                followersNumberView,
                                followingNumberView)
     }
@@ -75,7 +73,7 @@ final class ProfileViewController: UIViewController {
         headerView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalToSuperview().inset(44.adjusted)
-            $0.height.equalTo(50.adjusted)
+            $0.height.equalTo(59.adjusted)
         }
         
         scrollView.snp.makeConstraints {
@@ -84,9 +82,14 @@ final class ProfileViewController: UIViewController {
             $0.height.equalTo(1000.adjusted)
         }
         
+        circleProfileView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview().inset(11.adjusted)
+        }
+        
         postNumberView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(30.adjusted)
-            $0.leading.equalToSuperview().inset(142.adjusted)
+            $0.leading.equalTo(circleProfileView.snp.trailing).offset(50.adjusted)
         }
         
         followersNumberView.snp.makeConstraints {
