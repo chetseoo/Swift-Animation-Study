@@ -13,6 +13,7 @@ import Then
 final class ProfileCircleImageView: UIView {
     
     // MARK: set Properties
+    
     private let circleBorder = UIImageView()
     private let profileImageView = UIImageView()
     
