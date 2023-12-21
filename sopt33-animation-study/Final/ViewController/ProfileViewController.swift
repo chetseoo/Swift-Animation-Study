@@ -17,7 +17,10 @@ final class ProfileViewController: UIViewController {
     private let headerView = HeaderView()
     
     private let profileView = ProfileView()
-    private let horizontalStoryView = StorysView()
+    
+    private let newStoryView = StoryCircleView()
+    private let dosoptStoryView = StoryCircleView()
+    private let sanrioStoryView = StoryCircleView()
     
     private let tabsImageView = UIImageView()
     private let tabbarImageView = UIImageView()
@@ -38,6 +41,30 @@ final class ProfileViewController: UIViewController {
         self.view.do {
             $0.backgroundColor =  UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
         }
+        
+        newStoryView.do {
+            $0.titleLabel.text = "새로 만들기"
+            $0.circleImageView.image = UIImage(named: "Shape")
+        }
+        
+        dosoptStoryView.do {
+            $0.titleLabel.text = "dosopt_iOS"
+            $0.circleImageView.image = UIImage(named: "sopt")
+
+            $0.isUserInteractionEnabled = true
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dosoptStoryViewTapped))
+            $0.addGestureRecognizer(tapGesture)
+        }
+        
+        sanrioStoryView.do {
+            $0.titleLabel.text = "교동이를 사랑하자"
+            $0.circleImageView.image = UIImage(named: "gyodongstory")
+            
+            $0.isUserInteractionEnabled = true
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(gyodonStoryViewTapped))
+            $0.addGestureRecognizer(tapGesture)
+        }
+        
         tabsImageView.do {
             $0.image = UIImage(named: "Tabs")
         }
@@ -53,7 +80,9 @@ final class ProfileViewController: UIViewController {
     private func setHierachy() {
         self.view.addSubviews(headerView,
                               profileView,
-                              horizontalStoryView,
+                              newStoryView,
+                              dosoptStoryView,
+                              sanrioStoryView,
                               tabsImageView,
                               tabbarImageView)
     }
@@ -73,20 +102,41 @@ final class ProfileViewController: UIViewController {
             $0.height.equalTo(180.adjusted)
         }
         
-        horizontalStoryView.snp.makeConstraints {
+        newStoryView.snp.makeConstraints {
             $0.top.equalTo(profileView.snp.bottom)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(100.adjusted)
+            $0.leading.equalToSuperview().inset(14.adjusted)
+        }
+        
+        dosoptStoryView.snp.makeConstraints {
+            $0.top.equalTo(newStoryView.snp.top)
+            $0.leading.equalTo(newStoryView.snp.trailing).offset(18.adjusted)
+        }
+        
+        sanrioStoryView.snp.makeConstraints {
+            $0.top.equalTo(newStoryView.snp.top)
+            $0.leading.equalTo(dosoptStoryView.snp.trailing).offset(18.adjusted)
         }
         
         tabsImageView.snp.makeConstraints {
+            $0.top.equalTo(newStoryView.snp.bottom).offset(20.adjusted)
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(horizontalStoryView.snp.bottom)
         }
         
         tabbarImageView.snp.makeConstraints {
             $0.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
         }
+    }
+    
+    //MARK: Methods
+    
+    @objc
+    private func dosoptStoryViewTapped(sender: UITapGestureRecognizer) {
+        self.navigationController?.pushViewController(DoSoptStoryViewController(), animated: false)
+    }
+    
+    @objc
+    private func gyodonStoryViewTapped(sender: UITapGestureRecognizer) {
+        self.navigationController?.pushViewController(GyodonStoryViewController(), animated: false)
     }
 }

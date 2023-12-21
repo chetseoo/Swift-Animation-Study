@@ -34,11 +34,11 @@ final class StoryCircleView: UIView {
     //MARK: set UI
     
     private func setUI() {
-    
+
         circleBorder.do {
             $0.image = UIImage(named: "smallOval")
         }
-
+ 
         titleLabel.do {
             $0.font = .systemFont(ofSize: 12.adjusted, weight: .regular)
         }
@@ -71,6 +71,7 @@ final class StoryCircleView: UIView {
         
         self.snp.makeConstraints {
             $0.width.equalTo(circleBorder.snp.width)
+            $0.height.equalTo(80.adjusted)
         }
     }
 }

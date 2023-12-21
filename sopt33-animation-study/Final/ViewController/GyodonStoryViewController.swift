@@ -1,5 +1,5 @@
 //
-//  DoSoptStoryViewController.swift
+//  GyodonStoryViewController.swift
 //  sopt33-animation-study
 //
 //  Created by 최서연 on 12/22/23.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class DoSoptStoryViewController: UIViewController {
+final class GyodonStoryViewController: UIViewController {
     
     //MARK: set Properties
     
@@ -37,7 +37,7 @@ final class DoSoptStoryViewController: UIViewController {
     private func setUI() {
         
         self.view.do {
-            $0.backgroundColor = .gray
+            $0.backgroundColor = .systemPink
         }
         
         storyTabbarImageView.do {
@@ -63,3 +63,4 @@ final class DoSoptStoryViewController: UIViewController {
         }
     }
 }
+
