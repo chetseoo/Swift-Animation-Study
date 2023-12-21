@@ -11,8 +11,8 @@ final class StoryCircleView: UIView {
     
     // MARK: set Properties
     
-    let circleImageView = UIImageView()
     private let circleBorder = UIImageView()
+    let circleImageView = UIImageView()
     let titleLabel = UILabel()
     
     //MARK: Life Cycle
@@ -38,11 +38,7 @@ final class StoryCircleView: UIView {
         circleBorder.do {
             $0.image = UIImage(named: "smallOval")
         }
-        
-        circleImageView.do {
-            $0.image = UIImage(named: "sport")
-        }
-        
+
         titleLabel.do {
             $0.font = .systemFont(ofSize: 12.adjusted, weight: .regular)
         }

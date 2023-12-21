@@ -36,14 +36,17 @@ final class StorysView: UIView {
     private func setUI() {
         newStoryView.do {
             $0.titleLabel.text = "새로 만들기"
+            $0.circleImageView.image = UIImage(named: "Shape")
         }
         
         dosoptStoryView.do {
             $0.titleLabel.text = "dosopt_iOS"
+            $0.circleImageView.image = UIImage(named: "sopt")
         }
         
         sanrioStoryView.do {
             $0.titleLabel.text = "교동이를 사랑하자"
+            $0.circleImageView.image = UIImage(named: "gyodongstory")
         }
     }
     

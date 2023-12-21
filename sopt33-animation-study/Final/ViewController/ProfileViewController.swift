@@ -19,6 +19,9 @@ final class ProfileViewController: UIViewController {
     private let profileView = ProfileView()
     private let horizontalStoryView = StorysView()
     
+    private let tabsImageView = UIImageView()
+    private let tabbarImageView = UIImageView()
+    
     //MARK: Life Cycle
     
     override func viewDidLoad() {
@@ -35,6 +38,13 @@ final class ProfileViewController: UIViewController {
         self.view.do {
             $0.backgroundColor =  UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
         }
+        tabsImageView.do {
+            $0.image = UIImage(named: "Tabs")
+        }
+        
+        tabbarImageView.do {
+            $0.image = UIImage(named: "Tab Bar")
+        }
     }
     
     
@@ -43,8 +53,9 @@ final class ProfileViewController: UIViewController {
     private func setHierachy() {
         self.view.addSubviews(headerView,
                               profileView,
-                              horizontalStoryView)
-        
+                              horizontalStoryView,
+                              tabsImageView,
+                              tabbarImageView)
     }
     
     //MARK: set Layout
@@ -55,7 +66,7 @@ final class ProfileViewController: UIViewController {
             $0.top.equalToSuperview().inset(44.adjusted)
             $0.height.equalTo(59.adjusted)
         }
-
+        
         profileView.snp.makeConstraints {
             $0.top.equalTo(headerView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
@@ -65,7 +76,17 @@ final class ProfileViewController: UIViewController {
         horizontalStoryView.snp.makeConstraints {
             $0.top.equalTo(profileView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(110.adjusted)
+            $0.height.equalTo(100.adjusted)
+        }
+        
+        tabsImageView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(horizontalStoryView.snp.bottom)
+        }
+        
+        tabbarImageView.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
         }
     }
 }
