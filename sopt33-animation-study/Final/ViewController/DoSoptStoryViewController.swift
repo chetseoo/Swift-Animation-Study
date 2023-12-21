@@ -65,7 +65,6 @@ final class DoSoptStoryViewController: UIViewController {
         
         closeButton.do {
             $0.setImage(UIImage(named: "close"), for: .normal)
-            $0.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         }
         
         iosImageView.do {
@@ -81,7 +80,7 @@ final class DoSoptStoryViewController: UIViewController {
             $0.progressTintColor = .white.withAlphaComponent(0.5)
             $0.progress = 0.1
             $0.frame = CGRect(x: 0, y: 0, width: 0, height: 2)
-            
+            $0.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         }
     }
     
@@ -173,8 +172,4 @@ final class DoSoptStoryViewController: UIViewController {
         })
     }
     
-    @objc
-    private func closeButtonTapped() {
-        self.navigationController?.popViewController(animated: false)
-    }
 }

@@ -51,7 +51,7 @@ final class ProfileView: UIView {
         }
         
         postNumberView.do {
-            $0.numberLabel.text = "1"
+            $0.numberLabel.text = "6"
             $0.descriptionLabel.text = "게시"
         }
         

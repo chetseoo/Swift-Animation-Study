@@ -166,7 +166,7 @@ final class GyodonStoryViewController: UIViewController {
         view.layer.addSublayer(heartEmitter)
         
         UIView.animate(withDuration: 5.0, delay: 0.0, options: [.curveLinear], animations: {
-            self.progressBar.frame.size.width = UIScreen.main.bounds.width-5
+            self.progressBar.frame.size.width = UIScreen.main.bounds.width-8
             self.progressBar.setProgress(1.0, animated: true)
         }, completion: { _ in
             self.navigationController?.pushViewController(ProfileViewController(), animated: false)
