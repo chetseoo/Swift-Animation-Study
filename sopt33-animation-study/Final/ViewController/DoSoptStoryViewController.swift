@@ -31,6 +31,8 @@ final class DoSoptStoryViewController: UIViewController {
         setUI()
         setHierachy()
         setLayout()
+        
+        setAnimation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,6 +127,29 @@ final class DoSoptStoryViewController: UIViewController {
     }
     
     //MARK: Methods
+    
+    
+    private func setAnimation() {
+        let heartEmitter = CAEmitterLayer()
+        heartEmitter.emitterPosition = CGPoint(x: 50, y: view.bounds.height-120)
+        heartEmitter.emitterSize = CGSize(width: 50, height: 100)
+        heartEmitter.emitterShape = .circle
+        
+        let heartCell = CAEmitterCell()
+        heartCell.contents = UIImage(named: "heart")?.cgImage
+        heartCell.scale = 0.5
+        heartCell.birthRate = 4
+        heartCell.lifetime = 1.0
+        heartCell.velocity = 80
+        heartCell.emissionRange = .pi / 5
+        heartCell.emissionLongitude = .pi / -2
+        heartCell.alphaRange = 0.3
+        heartCell.alphaSpeed = -0.5
+        
+        heartEmitter.emitterCells = [heartCell]
+        view.layer.addSublayer(heartEmitter)
+        
+    }
     
     @objc
     private func closeButtonTapped() {
