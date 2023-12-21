@@ -23,6 +23,8 @@ final class DoSoptStoryViewController: UIViewController {
     
     private let storyTabbarImageView = UIImageView()
     
+    private let progressBar = UIProgressView(progressViewStyle: .default)
+    
     //MARK: Life Cycle
     
     override func viewDidLoad() {
@@ -73,6 +75,14 @@ final class DoSoptStoryViewController: UIViewController {
         storyTabbarImageView.do {
             $0.image = UIImage(named: "storyTabbar")
         }
+        
+        progressBar.do {
+            $0.trackTintColor = .white.withAlphaComponent(0.2)
+            $0.progressTintColor = .white.withAlphaComponent(0.5)
+            $0.progress = 0.1
+            $0.frame = CGRect(x: 0, y: 0, width: 0, height: 2)
+            
+        }
     }
     
     
@@ -85,21 +95,27 @@ final class DoSoptStoryViewController: UIViewController {
         iosImageView.addSubviews(storyprofileImageView,
                                  storyTitleLabel,
                                  storyDateLabel,
-                                 closeButton)
+                                 closeButton,
+                                 progressBar)
     }
     
     
     //MARK: set Layout
     
     private func setLayout() {
+        progressBar.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(4.adjusted)
+            $0.leading.equalToSuperview().inset(4.adjusted)
+            $0.trailing.equalToSuperview().inset(4.adjusted)
+        }
         
         storyprofileImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(8.adjusted)
+            $0.top.equalToSuperview().inset(13.adjusted)
             $0.leading.equalToSuperview().inset(10.adjusted)
         }
         
         storyTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16.adjusted)
+            $0.top.equalToSuperview().inset(21.adjusted)
             $0.leading.equalTo(storyprofileImageView.snp.trailing).offset(12.adjusted)
         }
         
@@ -109,7 +125,7 @@ final class DoSoptStoryViewController: UIViewController {
         }
         
         closeButton.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(15.adjusted)
+            $0.top.equalToSuperview().inset(21.adjusted)
             $0.trailing.equalToSuperview().inset(11.adjusted)
         }
         
@@ -149,6 +165,12 @@ final class DoSoptStoryViewController: UIViewController {
         heartEmitter.emitterCells = [heartCell]
         view.layer.addSublayer(heartEmitter)
         
+        UIView.animate(withDuration: 5.0, delay: 0.0, options: [.curveLinear], animations: {
+            self.progressBar.frame.size.width = UIScreen.main.bounds.width-5
+            self.progressBar.setProgress(1.0, animated: true)
+        }, completion: { _ in
+            self.navigationController?.pushViewController(ProfileViewController(), animated: false)
+        })
     }
     
     @objc

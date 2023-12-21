@@ -35,6 +35,12 @@ final class ProfileViewController: UIViewController {
         setLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.hidesBackButton = true
+    }
+    
     //MARK: set UI
     
     private func setUI() {

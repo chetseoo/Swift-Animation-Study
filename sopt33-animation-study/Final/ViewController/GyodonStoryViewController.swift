@@ -14,7 +14,16 @@ final class GyodonStoryViewController: UIViewController {
     
     //MARK: set Properties
     
+    private let storyprofileImageView = UIImageView()
+    private let storyTitleLabel = UILabel()
+    private let storyDateLabel = UILabel()
+    private let closeButton = UIButton()
+    
+    private let gyoImageView = UIImageView()
+    
     private let storyTabbarImageView = UIImageView()
+    
+    private let progressBar = UIProgressView(progressViewStyle: .default)
     
     //MARK: Life Cycle
     
@@ -24,6 +33,8 @@ final class GyodonStoryViewController: UIViewController {
         setUI()
         setHierachy()
         setLayout()
+        
+        setAnimation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,12 +47,40 @@ final class GyodonStoryViewController: UIViewController {
     
     private func setUI() {
         
-        self.view.do {
-            $0.backgroundColor = .systemPink
+        storyprofileImageView.do {
+            $0.image = UIImage(named: "gyostoryimage")
+        }
+        
+        storyTitleLabel.do {
+            $0.text = "교동이를 사랑하자"
+            $0.font = .systemFont(ofSize: 13.adjusted, weight: .semibold)
+            $0.textColor = .white
+        }
+        
+        storyDateLabel.do {
+            $0.text = "2001년 10월 3일"
+            $0.font = .systemFont(ofSize: 12.adjusted, weight: .regular)
+            $0.textColor = .white
+        }
+        
+        closeButton.do {
+            $0.setImage(UIImage(named: "close"), for: .normal)
+        }
+        
+        gyoImageView.do {
+            $0.image = UIImage(named: "gyostory")
         }
         
         storyTabbarImageView.do {
             $0.image = UIImage(named: "storyTabbar")
+        }
+        
+        progressBar.do {
+            $0.trackTintColor = .white.withAlphaComponent(0.2)
+            $0.progressTintColor = .white.withAlphaComponent(0.5)
+            $0.progress = 0.1
+            $0.frame = CGRect(x: 0, y: 0, width: 0, height: 2)
+            
         }
     }
     
@@ -49,18 +88,91 @@ final class GyodonStoryViewController: UIViewController {
     //MARK: set Hierachy
     
     private func setHierachy() {
-        self.view.addSubview(storyTabbarImageView)
+        self.view.addSubviews(gyoImageView,
+                              storyTabbarImageView)
+        
+        gyoImageView.addSubviews(storyprofileImageView,
+                                 storyTitleLabel,
+                                 storyDateLabel,
+                                 closeButton,
+                                 progressBar)
     }
     
     
     //MARK: set Layout
     
     private func setLayout() {
+        
+        progressBar.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(4.adjusted)
+            $0.leading.equalToSuperview().inset(4.adjusted)
+            $0.trailing.equalToSuperview().inset(4.adjusted)
+        }
+        
+        storyprofileImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(13.adjusted)
+            $0.leading.equalToSuperview().inset(10.adjusted)
+        }
+        
+        storyTitleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(21.adjusted)
+            $0.leading.equalTo(storyprofileImageView.snp.trailing).offset(12.adjusted)
+        }
+        
+        storyDateLabel.snp.makeConstraints {
+            $0.top.equalTo(storyTitleLabel.snp.top)
+            $0.leading.equalTo(storyTitleLabel.snp.trailing).offset(8.adjusted)
+        }
+        
+        closeButton.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(21.adjusted)
+            $0.trailing.equalToSuperview().inset(11.adjusted)
+        }
+        
+        gyoImageView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalToSuperview().inset(44.adjusted)
+            $0.bottom.equalTo(storyTabbarImageView.snp.top)
+        }
+        
         storyTabbarImageView.snp.makeConstraints {
             $0.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(78.adjusted)
         }
     }
+    
+    //MARK: Methods
+    
+    
+    private func setAnimation() {
+        let heartEmitter = CAEmitterLayer()
+        heartEmitter.emitterPosition = CGPoint(x: 50, y: view.bounds.height-120)
+        heartEmitter.emitterSize = CGSize(width: 50, height: 100)
+        heartEmitter.emitterShape = .circle
+        
+        let heartCell = CAEmitterCell()
+        heartCell.contents = UIImage(named: "heart")?.cgImage
+        heartCell.scale = 0.5
+        heartCell.birthRate = 4
+        heartCell.lifetime = 1.0
+        heartCell.velocity = 80
+        heartCell.emissionRange = .pi / 5
+        heartCell.emissionLongitude = .pi / -2
+        heartCell.alphaRange = 0.3
+        heartCell.alphaSpeed = -0.5
+        
+        heartEmitter.emitterCells = [heartCell]
+        view.layer.addSublayer(heartEmitter)
+        
+        UIView.animate(withDuration: 5.0, delay: 0.0, options: [.curveLinear], animations: {
+            self.progressBar.frame.size.width = UIScreen.main.bounds.width-5
+            self.progressBar.setProgress(1.0, animated: true)
+        }, completion: { _ in
+            self.navigationController?.pushViewController(ProfileViewController(), animated: false)
+        })
+        
+    }
+    
 }
 
